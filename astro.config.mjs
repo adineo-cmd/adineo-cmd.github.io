@@ -2,5 +2,7 @@ import { defineConfig } from 'astro/config';
 
 export default defineConfig({
   integrations: [],
-  site: 'https://adineo-cmd.github.io', 
+  site: 'https://adineo-cmd.github.io',
+  integrations: [sitemap()],
+  output: 'static', 
 });

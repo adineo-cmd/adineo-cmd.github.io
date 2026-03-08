@@ -1,0 +1,7 @@
+# robots.txt for adineo-cmd.github.io
+# Location: public/robots.txt
+
+User-agent: *
+Allow: /
+Sitemap: https://adineo-cmd.github.io/sitemap.xml
+Crawl-delay: 1
