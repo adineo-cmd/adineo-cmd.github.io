@@ -1,80 +1,86 @@
-# 🌌 Aditya Yadav — Personal Portfolio
+<div align="center">
 
-A minimal, reflective, and deeply personal portfolio built with **Astro**, **Tailwind CSS**, and a love for clean aesthetics.
+# Portfolio
 
-> *“Create without pressure. Ship without apology.”*
+**The portfolio at the root of adineo-cmd.github.io.**
 
----
+[![Live site](https://img.shields.io/badge/live-site-2ea44f?logo=githubpages&logoColor=white)](https://adineo-cmd.github.io/)
+![Astro](https://img.shields.io/badge/Astro-BC52EE?logo=astro&logoColor=white) ![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?logo=tailwindcss&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white) ![GitHub Actions](https://img.shields.io/badge/Actions-2088FF?logo=githubactions&logoColor=white)
 
-## 📖 Overview
+[![Stars](https://img.shields.io/github/stars/adineo-cmd/adineo-cmd.github.io?style=flat&logo=github&label=stars)](https://github.com/adineo-cmd/adineo-cmd.github.io/stargazers) [![Last commit](https://img.shields.io/github/last-commit/adineo-cmd/adineo-cmd.github.io?style=flat)](https://github.com/adineo-cmd/adineo-cmd.github.io/commits)
 
-This repository contains the source code for my **personal portfolio website** — a digital home for my projects, writings, reading list, life goals, and a timeline of growth.
+[Live site](https://adineo-cmd.github.io/) · [Quick start](#quick-start) · [How it works](#how-it-works) · [Features](#features)
 
-Designed with intention, it blends **technical craftsmanship** with **personal expression**, reflecting both my engineering rigor and my values around balance, sustainability, and meaning.
-
-### Built with
-- **Astro** — Fast, content-focused static site generation  
-- **Tailwind CSS** — Custom zinc-based dark theme  
-- **Pure CSS tabs & filters** — No JavaScript for core navigation  
-- **Responsive & accessible** — Optimized for mobile and desktop  
-- **Performance-first** — Lighthouse scores consistently above 95  
+</div>
 
 ---
 
-## 🗂️ Site Structure
+A single-page portfolio built with Astro and Tailwind: introduction, about,
+selected projects, writings, reading library, a frozen list of 100 life goals,
+and a timeline of milestones.
 
-| Section   | Description |
-|----------|-------------|
-| **Home** | Hero introduction with contact info and résumé |
-| **About** | Bio, skills (AI/ML, Full-Stack, DevOps), and philosophy |
-| **Projects** | Curated showcase of featured work with live & GitHub links |
-| **Explore** | Gateway to deeper archives |
-| **Writings** | Essays and reflections on tech, life, and learning |
-| **Library** | Books I’ve read or am currently reading |
-| **List 100** | My unchanging list of 100 life goals (frozen at age 22) |
-| **Timeline** | Chronological milestones from 2022 → 2025+ |
-| **Contact** | Email, GitHub, LinkedIn, LeetCode |
+Content is data-driven, so the page changes without touching layout code.
 
----
+## Features
 
-## 🎨 Design Philosophy
+| | Feature | What it does |
+| --- | --- | --- |
+| 🪪 | **Hero and about** | Who I am, what I work with and how I approach building. |
+| 🧩 | **Project showcase** | Selected work with live and source links. |
+| 📚 | **Writings and library** | Essays, reading list and collected notes. |
+| 🗓️ | **List 100 and timeline** | Long-horizon goals next to the milestones so far. |
 
-- **Monochrome depth**  
-  Layered grayscale palette (zinc-950 → zinc-100) with subtle accents
+## How it works
 
-- **Themed backgrounds**  
-  Each page features a unique gruvbox-inspired or abstract SVG/WebP background
+The site is intentionally small:
 
-- **Typographic rhythm**  
-  - Body: *Courier New* (terminal roots)  
-  - Headings: Serif for contrast and clarity
+1. `src/data/content.js` holds the about text, links, projects and timeline.
+2. `src/pages/index.astro` renders the single page through one layout.
+3. Tailwind and a custom zinc palette provide the theme; there is no client-side
+   framework.
+4. The Pages workflow builds and deploys on every push to `main`.
 
-- **No bloat**  
-  Zero client-side JavaScript for tabs, filters, or navigation
+```mermaid
+flowchart LR
+  A[src/data/content.js] --> B[index.astro]
+  C[src/components] --> B
+  B --> D[static build]
+  D --> E[GitHub Pages root]
+```
 
-- **Clarity over noise**  
-  Every pixel serves readability, focus, and calm
+## Quick start
 
----
-
-## 🛠️ Tech Stack Highlights
-
-- **Framework:** Astro (SSG)
-- **Styling:** Tailwind CSS with `@layer` customizations
-- **State Management:** CSS sibling combinators (`:checked ~`)
-- **Content Management:** Centralized in `src/pages/data/content.js`
-- **Deployment:** Vercel, Netlify, or GitHub Pages ready
-
----
-
-## 📁 Project Structure
+**Install and run**
 
 ```bash
-src/
-├── assets/               # SVG & visual assets
-├── components/           # Reusable UI components
-├── layouts/              # Base HTML layouts
-├── pages/                # Route-based pages
-│   └── data/             # Centralized content (bio, projects, books, goals, timeline)
-├── styles/               # Tailwind & global styles
-└── env.d.ts              # Astro type definitions
+npm install
+npm run dev
+```
+
+**Production build**
+
+```bash
+npm run build
+npm run preview
+```
+
+## Project structure
+
+```text
+src/pages/index.astro  the page
+src/data/content.js    projects, about, links, timeline
+src/components/        section components
+src/layouts/           shared document shell
+src/styles/            global CSS
+public/images/         project and portrait images
+```
+
+## Deployment
+
+Every push to `main` builds the site and deploys it to GitHub Pages through
+`.github/workflows/deploy.yml`:
+
+**https://adineo-cmd.github.io/**
+
+The repository is the user site for the account, so it serves the domain root
+rather than a sub-path.
